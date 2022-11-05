@@ -1,21 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Accueil Sandrine Nutrition{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .img-nutrition{
+        border-radius: 9% 91% 26% 74% / 93% 24% 76% 7%  ;
+    }
+    .img-icon{
+        height: 80px;
+        width: 80px;
+    }
 </style>
 
-    <section class="section">
-        <div class="container">
-            <h1 class="title">
-                Hello World
-            </h1>
+    <section class="hero is-success mt-5">
+        <div class="hero-body">
+            <p class="title">
+                Sandrine Coupart
+            </p>
             <p class="subtitle">
-                My first website with <strong>Bulma</strong>!
+                DIÉTÉTICIENNE NUTRITIONNISTE
             </p>
         </div>
     </section>
+    <div class="block mt-6">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <img class="img-nutrition" src="{{ asset('img/fruits.jpg') }}">
+                </div>
+                <div class="column p-6 is-flex is-flex-direction-column is-justify-content-center has-text-centered">
+                    <h1 class="title">DIÉTÉTICIENNE À CAEN</h1>
+                    <p class="is-size-5">Diététicienne nutritionniste libérale, diplômée d’État, ayant plus de 15 ans d’expérience, je vous reçois en cabinet à Caen et de toute la France avec la visio-consultation par le biais de Doctolib, pour des échanges sécurisés.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block mt-5">
+        <h2 class="title has-text-centered mt-6 has-text-primary">Bénéficier de mon expertise</h2>
+        <div class="container mt-5">
+            <div class="columns">
+                <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                    <img class="img-icon" src="{{ asset('img/conversation.png') }}">
+                    <p class="mt-2">Conseils Nutritionnels</p>
+                </div>
+                <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                    <img class="img-icon" src="{{ asset('img/foyer.png') }}">
+                    <p class="mt-2">Bilan diététique personnalisé</p>
+                </div>
+                <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                    <img class="img-icon" src="{{ asset('img/instructeur.png') }}">
+                    <p class="mt-2">Coaching</p>
+                </div>
+                <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                    <img class="img-icon" src="{{ asset('img/bilan-de-sante.png') }}">
+                    <p class="mt-2">Rééducation nutritionnelle</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 {% endblock %}
