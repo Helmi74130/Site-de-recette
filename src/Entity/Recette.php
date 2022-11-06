@@ -40,13 +40,13 @@ class Recette
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[ORM\ManyToMany(targetEntity: ingredient::class, inversedBy: 'recettes')]
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'recettes')]
     private Collection $ingredients;
 
-    #[ORM\ManyToMany(targetEntity: regime::class, inversedBy: 'recettes')]
+    #[ORM\ManyToMany(targetEntity: Regime::class, inversedBy: 'recettes')]
     private Collection $regimes;
 
-    #[ORM\ManyToMany(targetEntity: allergen::class, inversedBy: 'recettes')]
+    #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'recettes')]
     private Collection $allergens;
 
     public function __construct()
