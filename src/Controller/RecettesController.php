@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Recette;
 use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecettesController extends AbstractController
 {
     #[Route('/recettes', name: 'app_recettes', methods: ['GET'])]
-    public function index(RecetteRepository $recetteRepository, Request $request, PaginatorInterface $paginator, IngredientRepository $ingredientRepository): Response
+    public function index(RecetteRepository $recetteRepository, Request $request, PaginatorInterface $paginator): Response
     {
         /**
          * This controller display all recettes
@@ -29,11 +31,22 @@ class RecettesController extends AbstractController
             6
         );
 
-        $test= $recetteRepository->findAll();
-
         return $this->render('recettes/recettes.html.twig', [
             'recettes' => $recettes,
-            'test' => $test
+        ]);
+    }
+
+    #[Route('/recettes/{title}', name: 'app_recette', methods: ['GET'])]
+    public function displayRecipe(Recette $recette): Response
+    {
+        /**
+         * This controller display one recette
+         * @param Recette $recette
+         * @return Response
+         */
+
+        return $this->render('recette/recette.html.twig', [
+            'recette'=> $recette
         ]);
     }
 }

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recette{% endblock %}
+
+{% block body %}
+    <style>
+        .img-recipe{
+            height: 500px;
+        }
+    </style>
+
+
+    <div class="block">
+        <div class="container">
+            <div class="columns">
+                <img class="column is-half img-recipe" src="{{ asset('img/fruits.jpg') }}"/>
+                <div class="column is-flex is-flex-direction-column " >
+                    <h1 class="title">{{ recette.title | capitalize}}</h1>
+                    <p>{{ recette.description }}</p>
+                    <div class="is-flex is-flex-direction-column mt-3">
+                        <p class="subtitle">Régimes:</p>
+                        <div class="is-flex is-align-items-center">
+                            <ion-icon class="mr-3" size="large" name="restaurant-outline"></ion-icon>
+                            {% for regimes in recette.regimes %}
+                                <p class="button is-primary is-rounded mr-1">{{ regimes }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="is-flex is-flex-direction-column mt-3">
+                        <p class="subtitle">Allergènes:</p>
+                        <div class="is-flex is-align-items-center">
+                            <ion-icon class="mr-3" size="large" name="alert-circle-outline"></ion-icon>
+                            {% for allergens in recette.allergens %}
+                                <p class="button is-warning is-light is-rounded mr-1">{{ allergens }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ dump(recette) }}
+{% endblock %}
