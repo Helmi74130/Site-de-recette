@@ -16,17 +16,23 @@ class AppFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
+        $ingredients = [];
+        $allergens=[];
+        $regimes=[];
         for ($j=0; $j<8;$j++){
             $allergen = new Allergen();
             $allergen->setName($faker->word());
+            $allergens[]=$allergen;
             $manager->persist($allergen);
 
             $regime = new Regime();
             $regime->setName($faker->word());
+            $regimes[]=$regime;
             $manager->persist($regime);
 
             $ingredient = new Ingredient();
             $ingredient->setName($faker->word());
+            $ingredients[] = $ingredient;
             $manager->persist($ingredient);
 
         }
@@ -39,15 +45,15 @@ class AppFixtures extends Fixture
                 ->setEtapes($faker->paragraph(rand(3,12)))
                 ->setNote($faker->numberBetween(1, 5))
                 ->setReposTime($faker->randomFloat(2, 0, 3));
-            for ($d=0; $d<4;$d++){
-                $recette->addAllergen($allergen)
-                    ->addIngredient($ingredient)
-                    ->addRegime($regime);
+            for ($z=0;$z<5;$z++){
+                $recette->addIngredient($ingredients[rand(1,7)])
+                    ->addAllergen($allergens[rand(1,7)])
+                    ->addRegime($regimes[rand(1,7)]);
             }
 
             $manager->persist($recette);
-
         }
+
 
             $manager->flush();
 

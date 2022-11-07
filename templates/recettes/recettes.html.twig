@@ -50,13 +50,18 @@
                                         <p class="has-text-centered">Notes de nos internautes:</p>
                                         <progress class="progress is-primary is-small mt-1" value="{{ recette.note }}" max="5"></progress>
                                     </div>
-                                    {%  for ingredient in recette.ingredients %}
-                        <p>{{ ingredient }}</p>
-                        {% endfor %}
+                                    <div class="is-flex is-justify-content-space-around is-align-items-center mt-2">
+                                        {%  for regime in recette.regimes%}
+                                            <p><b>{{ regime|capitalize }}</b></p>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
+                </div>
+                <div class="is-flex is-justify-content-center" style="width: 100%" >
+                    {{ knp_pagination_render(recettes) }}
                 </div>
             </div>
         </div>
