@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Allergen;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class AllergenCrudController extends AbstractCrudController
@@ -10,6 +11,13 @@ class AllergenCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Allergen::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInPlural('Allergènes')
+            ->setEntityLabelInSingular('Allergènes');
     }
 
     /*
