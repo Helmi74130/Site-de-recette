@@ -10,28 +10,47 @@
     </style>
 
 
-    <div class="block">
+    <div class="block mt-6">
         <div class="container">
             <div class="columns">
-                <img class="column is-half img-recipe" src="{{ asset('img/fruits.jpg') }}"/>
+                <div class="column is-half ">
+                    <img class="img-recipe" src="{{ asset('img/fruits.jpg') }}"/>
+                    <div class="is-flex is-justify-content-space-around is-align-items-center">
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                            <p>Cuisson</p>
+                            <ion-icon name="stopwatch-outline"></ion-icon>
+                            <p>{{ recette.preparationTime|number_format(2, 'h', '.') }} min</p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                            <p>Préparation</p>
+                            <ion-icon name="hourglass-outline"></ion-icon>
+                            <p>{{ recette.preparationTime|number_format(2, 'h', '.') }} min</p>
+                        </div>
+                        <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                            <p>Repos</p>
+                            <ion-icon name="timer-outline"></ion-icon>
+                            <p>{{ recette.preparationTime|number_format(2, 'h', '.') }} min</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="column is-flex is-flex-direction-column " >
                     <h1 class="title">{{ recette.title | capitalize}}</h1>
                     <p>{{ recette.description }}</p>
-                    <div class="is-flex is-flex-direction-column mt-3">
+                    <div class="is-flex is-flex-direction-column mt-5">
                         <p class="subtitle">Régimes:</p>
                         <div class="is-flex is-align-items-center">
                             <ion-icon class="mr-3" size="large" name="restaurant-outline"></ion-icon>
                             {% for regimes in recette.regimes %}
-                                <p class="button is-primary is-rounded mr-1">{{ regimes }}</p>
+                                <p class="button is-primary is-rounded mr-1 is-light ">{{ regimes }}</p>
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="is-flex is-flex-direction-column mt-3">
+                    <div class="is-flex is-flex-direction-column mt-5">
                         <p class="subtitle">Allergènes:</p>
                         <div class="is-flex is-align-items-center">
                             <ion-icon class="mr-3" size="large" name="alert-circle-outline"></ion-icon>
                             {% for allergens in recette.allergens %}
-                                <p class="button is-warning is-light is-rounded mr-1">{{ allergens }}</p>
+                                <p class="button is-warning is-rounded mr-1 is-light">{{ allergens }}</p>
                             {% endfor %}
                         </div>
                     </div>
@@ -39,6 +58,41 @@
             </div>
         </div>
     </div>
+    <div class="block">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-two-thirds box p-5">
+                    <div class="is-flex is-flex-direction-column">
+                        <p class="subtitle">Ingrédients:</p>
+                        <div>
+                            {% for ingredients in recette.ingredients %}
+                                <p class="">- {{ ingredients|capitalize }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="is-flex is-flex-direction-column">
+                        <p class="subtitle">Etapes:</p>
+                        <div>
+                            <p>{{ recette.etapes }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column ">
+                    <p class="subtitle"><b>Vous aimerez aussi: </b></p>
+                    <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
+                        {% for randomRecette in randomRecettes %}
+                            <a class="mb-5" style="width: 48%;">
+                                <img style="height:250px" src="{{ asset('img/fruits.jpg') }}">
+                                <p class="has-text-centered has-text-black">{{ randomRecette.title|capitalize }}</p>
+                            </a>
+                        {% endfor %}
+                    </div>
 
-    {{ dump(recette) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ dump(randomRecettes) }}
+
 {% endblock %}

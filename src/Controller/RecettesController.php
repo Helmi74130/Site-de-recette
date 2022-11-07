@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Recette;
-use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +35,7 @@ class RecettesController extends AbstractController
     }
 
     #[Route('/recettes/{title}', name: 'app_recette', methods: ['GET'])]
-    public function displayRecipe(Recette $recette): Response
+    public function displayRecipe(Recette $recette, RecetteRepository $recetteRepository): Response
     {
         /**
          * This controller display one recette
@@ -45,8 +43,24 @@ class RecettesController extends AbstractController
          * @return Response
          */
 
+
+        /**
+         * This loop return 4 random recipes
+         * @return Response
+         */
+        $recettes= $recetteRepository->findAll();
+        $randomRecettes=[];
+
+
+        for ($i=0;$i<4;$i++) {
+            $randomRecettes[] = $recettes[(rand(0, count($recettes) - 1))];
+        }
+
+        $randomRecettes = array_unique($randomRecettes, SORT_REGULAR);
+
         return $this->render('recette/recette.html.twig', [
-            'recette'=> $recette
+            'recette'=> $recette,
+            'randomRecettes'=>$randomRecettes
         ]);
     }
 }
