@@ -6,12 +6,13 @@ use App\Entity\Allergen;
 use App\Entity\Ingredient;
 use App\Entity\Recette;
 use App\Entity\Regime;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\LanguageField;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class DashboardController extends AbstractDashboardController
 {
@@ -45,6 +46,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToRoute('Accueil', 'fa-solid fa-house-laptop', 'app_home'),
             MenuItem::linkToRoute('Recettes', 'fa-solid fa-sitemap', 'app_recettes')
         ]);
+        yield MenuItem::section('Utilisateurs');
+        //yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-circle-exclamation', User::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
 

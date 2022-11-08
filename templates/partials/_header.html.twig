@@ -47,11 +47,14 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-primary">
+                    <a class="button is-primary" href="{{ path('app_register') }}">
                         <strong>S'inscrire</strong>
                     </a>
-                    <a class="button is-light">
+                    <a class="button is-light" href="{{ path('app_login') }}">
                         Connexion
+                    </a>
+                    <a class="button is-danger" href="{{ path('app_logout') }}">
+                        Déconnexion
                     </a>
                 </div>
             </div>

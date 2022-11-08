@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="columns is-multiline">
                     {%  for recette in recettes %}
-                        <a class="column is-one-third" href="{{ path('app_recette', {title: recette.title}) }}">
+                        <a class="column is-one-third mt-5" href="{{ path('app_recette', {title: recette.title}) }}">
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image is-4by3">
@@ -29,21 +29,27 @@
                                         </div>
                                     </div>
                                     <div class="is-flex is-justify-content-space-around is-align-items-center">
-                                        <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
-                                            <ion-icon name="stopwatch-outline"></ion-icon>
-                                            <p>Cuisson</p>
-                                            <p>{{ recette.preparationTime|number_format(2, '.', 'h') }} min</p>
-                                        </div>
-                                        <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
-                                            <ion-icon name="hourglass-outline"></ion-icon>
-                                            <p>Préparation</p>
-                                            <p>{{ recette.preparationTime|number_format(2, 'h', '.') }} min</p>
-                                        </div>
-                                        <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
-                                            <ion-icon name="timer-outline"></ion-icon>
-                                            <p>Repos</p>
-                                            <p>{{ recette.preparationTime|number_format(2, 'h', '.') }} min</p>
-                                        </div>
+                                        {% if recette.cuissonTime %}
+                                            <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                                                <ion-icon name="stopwatch-outline"></ion-icon>
+                                                <p>Cuisson</p>
+                                                <p>{{ recette.cuissonTime }} min</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if recette.preparationTime %}
+                                            <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                                                <ion-icon name="hourglass-outline"></ion-icon>
+                                                <p>Préparation</p>
+                                                <p>{{ recette.preparationTime}} min</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if recette.reposTime %}
+                                            <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
+                                                <ion-icon name="timer-outline"></ion-icon>
+                                                <p>Repos</p>
+                                                <p>{{ recette.reposTime }} min</p>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                     <div class="mt-3">
                                         <p class="has-text-centered">Notes de nos internautes:</p>
@@ -65,6 +71,5 @@
             </div>
         </div>
     {% endif %}
-
 
 {% endblock %}
