@@ -52,17 +52,11 @@ class Recette
     #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'recettes')]
     private Collection $allergens;
 
-    #[Vich\UploadableField(mapping: 'recipe_images', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'recipe_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'string')]
     private ?string $imageName = null;
-
-    #[ORM\Column(type: 'integer')]
-    private ?int $imageSize = null;
-
-    /*#[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $updatedAt = null;*/
 
 
     /**
@@ -99,16 +93,6 @@ class Recette
     {
         return $this->imageName;
     }
-
-    /*public function setImageSize(?int $imageSize): void
-    {
-        $this->imageSize = $imageSize;
-    }
-
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
-    }*/
 
     public function __construct()
     {

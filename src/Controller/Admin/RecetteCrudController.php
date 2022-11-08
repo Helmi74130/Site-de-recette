@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -49,11 +50,11 @@ class RecetteCrudController extends AbstractCrudController
             IntegerField::new('preparationTime'),
             IntegerField::new('cuissonTime'),
             IntegerField::new('reposTime'),
-            TextEditorField::new('etapes'),
-            TextEditorField::new('description'),
+            TextareaField::new('etapes'),
+            TextareaField::new('description'),
             TextField::new('photo'),
             TextField::new('imageFile')->setFormType(VichImageType::class),
-            ImageField::new('file')->setBasePath('')->onlyOnIndex(),
+            ImageField::new('imageName')->setBasePath('/images/recette/')->onlyOnIndex(),
 
 
 

@@ -14,7 +14,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-half ">
-                    <img class="img-recipe" src="{{ asset('img/fruits.jpg') }}"/>
+                    <img style="height: 600px; width: 100%" class="img-recipe" src="{{ vich_uploader_asset(recette, 'imageFile') }}"/>
                     <div class="is-flex is-justify-content-space-around is-align-items-center">
                         <div class="is-flex is-flex-direction-column is-align-items-center is-justify-content-space-between">
                             <p>Cuisson</p>
@@ -83,7 +83,7 @@
                     <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
                         {% for randomRecette in randomRecettes %}
                             <a class="mb-5" style="width: 48%;">
-                                <img style="height:250px" src="{{ asset('img/fruits.jpg') }}">
+                                <img style="height:250px" src="{{ vich_uploader_asset(randomRecette, 'imageFile') }}">
                                 <p class="has-text-centered has-text-black">{{ randomRecette.title|capitalize }}</p>
                             </a>
                         {% endfor %}
