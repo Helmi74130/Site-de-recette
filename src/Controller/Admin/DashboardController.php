@@ -47,7 +47,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToRoute('Recettes', 'fa-solid fa-sitemap', 'app_recettes')
         ]);
         yield MenuItem::section('Utilisateurs');
-        //yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-circle-exclamation', User::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-circle-exclamation', User::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
 
