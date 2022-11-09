@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -96,6 +97,17 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
         ;
+        $builder->get('allergens')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($allergensAsString) {
+                    // transform the string back to an array
+                    return explode(', ', $allergensAsString);
+                },
+                function ($allergensAsArray) {
+                    // transform the array to a string
+                    return implode(', ', $allergensAsArray);
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void
