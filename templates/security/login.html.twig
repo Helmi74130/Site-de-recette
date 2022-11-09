@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion!{% endblock %}
 
 {% block body %}
-<form method="post">
+<style>
+    .kiwi{
+        border-radius: 7% 93% 8% 92% / 91% 9% 91% 9%  ;
+    }
+</style>
+    <h1 class="title m-6">Connexion</h1>
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -14,29 +19,49 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-three-fifths">
+                <img class="kiwi" src="{{ asset('img/kiwi.jpg') }}">
+            </div>
+            <div class="column is-flex is-flex-direction-column is-justify-content-center">
+                <form method="post">
+                    <div class="field">
+                        <label class="label" for="inputEmail">E-mail</label>
+                        <div class="control has-icons-left">
+                            <input class="input is-success is-large" type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus>
+                            <span class="icon is-left">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="inputPassword">Mot de passe</label>
+                        <div class="control has-icons-left">
+                            <input class="input is-success is-large" type="password" name="password" id="inputPassword"  autocomplete="current-password" required>
+                            <span class="icon is-left">
+                                <i class="bi bi-lock"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="is-flex is-flex-direction-column is-align-items-center">
+                        <label class="checkbox">
+                            <input type="checkbox" name="_remember_me">
+                            Se souvenir de moi
+                        </label>
+                        <div class="mt-4">
+                            <button type="submit" class="button is-primary is-large">
+                        <span class="icon">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                        </span>
+                                <span>Connexion</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    #}
+    </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
 {% endblock %}
