@@ -7,27 +7,84 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Inscription</h1>
-  <div class="container">
-      {{ form_start(registrationForm) }}
-      <div class="columns">
-          <div class="field column">
-              <label class="label">{{ form_label(registrationForm.name) }}</label>
-              <div class="control">
-                  <div class="input">{{ form_widget(registrationForm.name) }}</div>
-              </div>
-          </div>
+    <h1 class="title m-6">Inscription</h1>
 
-          <div class="">{{ form_row(registrationForm.firstname) }}</div>
-          <div class="">{{ form_row(registrationForm.email) }}</div>
-          <div class="">{{ form_row(registrationForm.plainPassword) }}</div>
-          <div class="">{{ form_row(registrationForm.city) }}</div>
-          <div class="">{{ form_row(registrationForm.agreeTerms) }}</div>
-          <button type="submit" class="btn">S'inscrire</button>
-      </div>
-
-      {{ form_end(registrationForm) }}
-  </div>
-
+    <div class="container">
+        {{ form_start(registrationForm, { 'attr': {'class': 'columns is-multiline box is-justify-content-space-around'} })  }}
+        <div class="column is-two-fifths">
+            {{ form_label(registrationForm.name) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(registrationForm.name, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-person-fill"></i>
+                </span>
+            </div>
+            {{ form_help(registrationForm.name, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(registrationForm.firstname) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(registrationForm.firstname, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-person-fill"></i>
+                </span>
+            </div>
+            {{ form_help(registrationForm.firstname, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(registrationForm.city) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(registrationForm.city, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-house"></i>
+                </span>
+            </div>
+            {{ form_help(registrationForm.city, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(registrationForm.allergens) }}
+            <div class="control has-icons-left mt-2 ">
+                {{ form_widget(registrationForm.allergens, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-list-task"></i>
+                </span>
+            </div>
+            {{ form_help(registrationForm.allergens, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(registrationForm.email) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(registrationForm.email, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-envelope"></i>
+                </span>
+            </div>
+            {{ form_help(registrationForm.email, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(registrationForm.plainPassword) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-lock"></i>
+                </span>
+            </div>
+            {{ form_help(registrationForm.plainPassword, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-full is-flex is-justify-content-space-between">
+            <div class="checkbox">
+                {{ form_row(registrationForm.agreeTerms, { 'attr': {'type': 'checkbox', 'class': 'ml-2' } }) }}
+            </div>
+            <div>
+                <button type="submit" class="button is-primary">
+                    <span class="icon">
+                        <i class="bi bi-send"></i>
+                     </span>
+                    <span>S'inscrire</span>
+                </button>
+            </div>
+        </div>
+        {{ form_end(registrationForm) }}
+    </div>
 
 {% endblock %}

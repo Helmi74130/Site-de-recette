@@ -34,7 +34,6 @@ class RecetteCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            //IdField::new('id'),
             FormField::addPanel('Recettes'),
             TextField::new('title')->setLabel('Nom'),
             AssociationField::new('regimes')->hideOnIndex(),

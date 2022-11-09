@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,6 +35,23 @@ class RegistrationFormType extends AbstractType
                     'maxlength' => '50'
                 ]
             ])
+            ->add('allergens', ChoiceType::class, [
+                'label'=> 'Allergènes *',
+                'multiple' => true,
+                'expanded'=> false,
+                'choices'  => [
+                    'Aucunes allergies' => null,
+                    'Gluten' => 'gluten',
+                    'Oeufs' => 'oeufs',
+                    'Crustacés' => 'crustacés',
+                    'Arachides' => 'arachides',
+                    'Soja' => 'soja',
+                    'Lactose' => 'lactose',
+                    'Fruits à coques' => 'fruits à coques',
+                    'Céleri' => 'céleri',
+                    'Moutarde' => 'moutarde'
+                ],
+            ])
             ->add('email', EmailType::class, [
                 'label' => 'E-mail *',
                 'attr' => [
@@ -49,12 +67,12 @@ class RegistrationFormType extends AbstractType
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'attr' => [
-                    'minlength' => '2',
+                    'minlength' => '0',
                     'maxlength' => '150'
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Accepter nos termes d\'utilisations',
+                'label' => 'Accepter nos termes',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

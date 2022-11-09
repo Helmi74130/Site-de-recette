@@ -40,6 +40,7 @@ class RecettesController extends AbstractController
         /**
          * This controller display one recette
          * @param Recette $recette
+         * @param RecetteRepository $recetteRepository
          * @return Response
          */
 
