@@ -1,7 +1,154 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cabinnet {% endblock %}
+{% block title %}Rendez-vous !{% endblock %}
 
 {% block body %}
+
+    <style>
+        .fixed{
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: -1;
+            top: 0;
+        }
+        #meet_time{
+            display: flex;
+            font-size: 1.5rem;
+        }
+        #meet_time_hour{
+            border: 1px solid #00d1b2;
+            width: 50%;
+            height: 60px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+        #meet_time_minute{
+            border: 1px solid #00d1b2;
+            width: 50%;
+            height: 60px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+        #meet_date_day{
+            border: 1px solid #00d1b2;
+            width: 33%;
+            height: 60px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 5px 0 0 5px;
+        }
+        #meet_date_month{
+            border: 1px solid #00d1b2;
+            width: 33%;
+            height: 60px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        #meet_date_year{
+            border: 1px solid #00d1b2;
+            width: 33%;
+            height: 60px;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 0 5px 5px 0;
+        }
+
+    </style>
+
+    <h1 class="title m-6">Prenez rendez-vous</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="container mb-6">
+            <div class="notification is-primary is-light">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="container mt-6 is-size-4">
+        {{ form_start(meetForm, { 'attr': {'class': 'columns is-multiline box is-justify-content-space-around p-6'} })  }}
+        <div class="column is-two-fifths">
+            {{ form_label(meetForm.name) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(meetForm.name, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-person-fill"></i>
+                </span>
+            </div>
+            {{ form_help(meetForm.name, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(meetForm.phone) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(meetForm.phone, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-telephone"></i>
+                </span>
+            </div>
+            {{ form_help(meetForm.phone, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(meetForm.email) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(meetForm.email, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-envelope"></i>
+                </span>
+            </div>
+            {{ form_help(meetForm.email, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(meetForm.subject) }}
+            <div class="control has-icons-left mt-2">
+                {{ form_widget(meetForm.subject, { 'attr': {'class': 'input is-primary is-large'} }) }}
+                <span class="icon is-small is-left">
+                    <i class="bi bi-megaphone"></i>
+                </span>
+            </div>
+            {{ form_help(meetForm.subject, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(meetForm.date) }}
+            <div class="control mt-2">
+                {{ form_widget(meetForm.date, { 'attr': {'type': 'date'} }) }}
+            </div>
+            {{ form_help(meetForm.date, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths">
+            {{ form_label(meetForm.time) }}
+            <div class="control has-icons-left mt-2 ">
+                {{ form_widget(meetForm.time) }}
+            </div>
+            {{ form_help(meetForm.time, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-full is-flex is-justify-content-flex-end">
+            <div>
+                <button type="submit" class="button is-large is-primary">
+                    <span class="icon">
+                        <i class="bi bi-calendar-check"></i>
+                     </span>
+                    <span>Confirmer</span>
+                </button>
+            </div>
+        </div>
+        {{ form_end(meetForm) }}
+    </div>
+    <img class="smoothie fixed" src="{{ asset('img/persil.jpg') }}"></img>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                const $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
 
 {% endblock %}
