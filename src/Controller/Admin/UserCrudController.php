@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -25,12 +27,20 @@ class UserCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Utilisateur');
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->remove(Crud::PAGE_INDEX, Action::NEW)
+            ;
+    }
+
 
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')->setDisabled(),
-            TextField::new('email'),
+            TextField::new('email')->setDisabled(),
             FormField::addPanel('Profile utilisateurs'),
             TextField::new('name')->setLabel('Nom'),
             TextField::new('firstname')->setLabel('Prénom'),
@@ -39,7 +49,7 @@ class UserCrudController extends AbstractCrudController
             FormField::addPanel('Droits d\'utilisateurs'),
             ArrayField::new('roles')->setLabel('Roles'),
             BooleanField::new('isverified')->setLabel('Courriel vérifié'),
-            TextField::new('password')
+            TextField::new('password')->hideOnDetail()->hideOnIndex()->hideOnForm()
 
         ];
     }

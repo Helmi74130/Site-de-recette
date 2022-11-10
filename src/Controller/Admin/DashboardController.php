@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Allergen;
+use App\Entity\Contact;
 use App\Entity\Ingredient;
 use App\Entity\Recette;
 use App\Entity\Regime;
@@ -47,7 +48,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToRoute('Recettes', 'fa-solid fa-sitemap', 'app_recettes')
         ]);
         yield MenuItem::section('Utilisateurs');
-        yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-circle-exclamation', User::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-users', User::class);
+        yield MenuItem::section('Contact');
+        yield MenuItem::linkToCrud('Mes messages', 'fa-regular fa-message', Contact::class);
 
         //yield MenuItem::linkToLogout('Logout', 'fa fa-exit');
 
