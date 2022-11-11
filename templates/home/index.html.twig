@@ -11,6 +11,23 @@
         height: 80px;
         width: 80px;
     }
+    .concombre-img{
+        position: fixed;
+        top: 0px;
+        z-index: -1;
+    }
+    .bulle{
+        background-image: linear-gradient(to right top, #ffffff, #eaf2ff, #c4e9ff, #90e3ff, #51dde9, #32dada, #11d6c7, #00d1b2, #00d1b2, #00d1b2, #00d1b2, #00d1b2);
+        height: 400px;
+        width: 400px;
+        border-radius: 47% 53% 22% 77% / 47% 48% 54% 54% ;
+    }
+    .white{
+        background: white;
+    }
+    .test{
+        background: rgba(0, 0, 0, 0.42);
+    }
 </style>
 
     <section class="hero is-primary mt-5">
@@ -23,7 +40,7 @@
             </p>
         </div>
     </section>
-    <div class="block mt-6">
+    <div class="block white mb-0 p-6">
         <div class="container">
             <div class="columns">
                 <div class="column">
@@ -31,31 +48,66 @@
                 </div>
                 <div class="column p-6 is-flex is-flex-direction-column is-justify-content-center has-text-centered">
                     <h1 class="title">DIÉTÉTICIENNE À CAEN</h1>
-                    <p class="is-size-5">Diététicienne nutritionniste libérale, diplômée d’État, ayant plus de 15 ans d’expérience, je vous reçois en cabinet à Caen et de toute la France avec la visio-consultation par le biais de Doctolib, pour des échanges sécurisés.</p>
+                    <p class="is-size-3">Diététicienne nutritionniste libérale, diplômée d’État, ayant plus de 15 ans d’expérience, je vous reçois en cabinet à Caen et de toute la France avec la visio-consultation par le biais de Doctolib, pour des échanges sécurisés.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="block mt-5">
-        <h2 class="title has-text-centered mt-6 has-text-primary">Bénéficier de mon expertise</h2>
-        <div class="container mt-5">
+    <div class="block white mb-0 p-6">
+        <img class="concombre-img" src="{{ asset('img/concombre.jpg') }}">
+        <div class="container ">
+            <div class="columns">
+                <div class="column is-size-3 is-flex is-flex-direction-column is-justify-content-center is-align-items-center has-text-justified">
+                    <h3 class="title">Une difficulté avec votre alimentation ?</h3>
+                    <p>
+                        Je vous accompagne durablement dans votre projet, parce que votre santé reste l’essentiel de votre bien-être.
+                        <br> Faite le choix de vous faire accompagner dans votre alimentation est un premier pas vers une sérénité alimentaire.
+                    </p>
+                    <p class="is-size-5">Ne tardez pas et prenez vite rendez-vous</p>
+                    <button class="button is-primary is-large mt-3">Prenez RDV</button>
+                </div>
+                <div class="column is-flex is-justify-content-center is-align-items-center">
+                    <div class="bulle is-flex is-justify-content-center is-align-items-center is-size-2">
+                        <p class="has-text-centered">10 ans <br> que nous <br> vous <br> accompagnons</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block p-6 mb-0 test">
+        <h2 class="title has-text-centered mt-3 has-text-light">Bénéficier de mon expertise</h2>
+        <div class="container">
             <div class="columns">
                 <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
                     <img class="img-icon" src="{{ asset('img/conversation.png') }}">
-                    <p class="mt-2">Conseils Nutritionnels</p>
+                    <p class="mt-3 has-text-light">Conseils Nutritionnels</p>
                 </div>
                 <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
                     <img class="img-icon" src="{{ asset('img/foyer.png') }}">
-                    <p class="mt-2">Bilan diététique personnalisé</p>
+                    <p class="mt-3 has-text-light">Bilan diététique personnalisé</p>
                 </div>
                 <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
                     <img class="img-icon" src="{{ asset('img/instructeur.png') }}">
-                    <p class="mt-2">Coaching</p>
+                    <p class="mt-3 has-text-light">Coaching</p>
                 </div>
                 <div class="column is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
                     <img class="img-icon" src="{{ asset('img/bilan-de-sante.png') }}">
-                    <p class="mt-2">Rééducation nutritionnelle</p>
+                    <p class="mt-3 has-text-light">Rééducation nutritionnelle</p>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="block box mb-0 p-5">
+        <div class="container is-size-3 has-text-centered">
+            <div>
+                <h4 class="title mt-5">Votre Diététicienne Nutritionniste spécialisée</h4>
+                <p class="mt-3">
+                    Les choix alimentaires et votre relation avec la nourriture sont à la base de votre santé physique et mentale.
+                    Au-delà de votre image, votre corps est toujours vital pour votre santé, et s'efforcer d'en prendre soin au quotidien est inestimable.
+                    Afin de prendre soin de votre alimentation et d'adapter vos apports alimentaires à vos besoins nutritionnels, vous devez d'abord soigner votre rapport à votre assiette.
+                    Choisir de vous accompagner dans votre régime est le premier pas vers la sérénité alimentaire.
+                    Pour ce faire, le nutritionniste que vous choisissez - un nutritionniste doit avoir des compétences bien précises afin de vous aider à tous les niveaux.
+                </p>
             </div>
         </div>
     </div>

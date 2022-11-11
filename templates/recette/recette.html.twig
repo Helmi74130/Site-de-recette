@@ -9,7 +9,6 @@
         }
     </style>
 
-
     <div class="block mt-6">
         <div class="container">
             <div class="columns">
@@ -42,6 +41,11 @@
                 <div class="column is-flex is-flex-direction-column " >
                     <h1 class="title">{{ recette.title | capitalize}}</h1>
                     <p>{{ recette.description }}</p>
+                    {% for userAllergens in currentUserAllergensArray %}
+                        {%  if userAllergens in recette.allergens%}
+                            <p class="has-text-danger has-text-centered mt-2"><b>Incompatible avec votre allergie</b></p>
+                        {% endif %}
+                    {% endfor %}
                     <div class="is-flex is-flex-direction-column mt-5">
                         <p class="subtitle">Régimes:</p>
                         <div class="is-flex is-align-items-center">
@@ -88,7 +92,7 @@
                     <p class="subtitle"><b>Vous aimerez aussi: </b></p>
                     <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
                         {% for randomRecette in randomRecettes %}
-                            <a class="mb-6" style="width: 48%; height: 300px" href="{{ path('app_recette', {title: randomRecette.title}) }}">
+                            <a class="mb-6" style="width: 48%; height: 200px" href="{{ path('app_recette', {title: randomRecette.title}) }}">
                                 <img style="width: 100%; height: 100%" src="{{ vich_uploader_asset(randomRecette, 'imageFile') }}">
                                 <p class="has-text-centered has-text-black">{{ randomRecette.title|capitalize }}</p>
                             </a>
@@ -99,6 +103,4 @@
             </div>
         </div>
     </div>
-    {{ dump(randomRecettes) }}
-
 {% endblock %}

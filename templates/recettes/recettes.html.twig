@@ -3,13 +3,11 @@
 {% block title %}Recettes{% endblock %}
 
 {% block body %}
+
 <h1 class="title m-5">Nos recettes</h1>
     {% if not recettes.items is same as ([]) %}
         <div class="">
             <p class="">Il y'a {{ recettes.getTotalItemCount }} recette(s) au total</p>
-            <div class="">
-                <a class="" href="">Ajouter une recette</a>
-            </div>
         </div>
         <div class="block">
             <div class="container">
@@ -51,6 +49,11 @@
                                             </div>
                                         {% endif %}
                                     </div>
+                                    {% for userAllergens in currentUserAllergensArray %}
+                                        {%  if userAllergens in recette.allergens%}
+                                            <p class="has-text-danger has-text-centered mt-2"><b>Incompatible avec votre allergie</b></p>
+                                        {% endif %}
+                                    {% endfor %}
                                     <div class="mt-3">
                                         <p class="has-text-centered">Notes de nos internautes:</p>
                                         <progress class="progress is-primary is-small mt-1" value="{{ recette.note }}" max="5"></progress>

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Recette;
+use App\Entity\User;
+use App\Repository\AllergenRepository;
 use App\Repository\RecetteRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecettesController extends AbstractController
 {
     #[Route('/recettes', name: 'app_recettes', methods: ['GET'])]
-    public function index(RecetteRepository $recetteRepository, Request $request, PaginatorInterface $paginator): Response
+    public function index(RecetteRepository $recetteRepository, Request $request, PaginatorInterface $paginator, AllergenRepository $allergenRepository): Response
     {
         /**
          * This controller display all recettes
@@ -29,8 +31,18 @@ class RecettesController extends AbstractController
             6
         );
 
+        $user = $this->getUser();
+        if (isset($user)){
+            $currentUserAllergensString = str_replace(', ','.',$user->getAllergens());
+            $currentUserAllergensArray = explode(".", $currentUserAllergensString);
+        }else{
+            $currentUserAllergensArray ='';
+        }
+
+
         return $this->render('recettes/recettes.html.twig', [
             'recettes' => $recettes,
+            'currentUserAllergensArray'=> $currentUserAllergensArray,
         ]);
     }
 
@@ -44,6 +56,13 @@ class RecettesController extends AbstractController
          * @return Response
          */
 
+        $user = $this->getUser();
+        if (isset($user)){
+            $currentUserAllergensString = str_replace(', ','.',$user->getAllergens());
+            $currentUserAllergensArray = explode(".", $currentUserAllergensString);
+        }else{
+            $currentUserAllergensArray ='';
+        }
 
         /**
          * This loop return 4 random recipes
@@ -51,7 +70,6 @@ class RecettesController extends AbstractController
          */
         $recettes= $recetteRepository->findAll();
         $randomRecettes=[];
-
 
         for ($i=0;$i<4;$i++) {
             $randomRecettes[] = $recettes[(rand(0, count($recettes) - 1))];
@@ -61,7 +79,8 @@ class RecettesController extends AbstractController
 
         return $this->render('recette/recette.html.twig', [
             'recette'=> $recette,
-            'randomRecettes'=>$randomRecettes
+            'randomRecettes'=>$randomRecettes,
+            'currentUserAllergensArray'=> $currentUserAllergensArray
         ]);
     }
 }

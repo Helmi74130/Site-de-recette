@@ -1,7 +1,7 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-size-5" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ path('app_home') }}">
-            <img src="{{ asset('img/logo.png') }}" width="28" height="28">
+            <img src="{{ asset('img/logo.png') }}" width="42" height="42">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -23,7 +23,7 @@
                 <a class="navbar-link">
                     Plus
                 </a>
-                <div class="navbar-dropdown">
+                <div class="navbar-dropdown is-size-5">
                     <a class="navbar-item" href="{{ path('app_contact') }}">
                         Contact
                     </a>
@@ -39,20 +39,26 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
+
                 <div class="buttons">
+                    {% if app.user %}
+                        {% if user.name is defined and user.name is not null %}
+                            <p class="subtitle mt-3 mr-5 is-size-4">Bonjour {{ user.name }} {{ user.firstname }}</p>
+                        {% endif %}
+                    {% endif %}
                     {% if not app.user %}
-                        <a class="button is-primary" href="{{ path('app_register') }}">
+                        <a class="button is-primary is-size-5" href="{{ path('app_register') }}">
                             <strong>S'inscrire</strong>
                         </a>
-                        <a class="button is-light" href="{{ path('app_login') }}">
+                        <a class="button is-light is-size-5" href="{{ path('app_login') }}">
                             Connexion
                         </a>
                     {% endif %}
-                    <a class="button is-light" href="{{ path('admin') }}">
+                    <a class="button is-light is-size-5" href="{{ path('admin') }}">
                         Administration
                     </a>
                     {% if app.user %}
-                        <a class="button is-warning" href="{{ path('app_logout') }}">
+                        <a class="button is-warning is-size-5" href="{{ path('app_logout') }}">
                             Déconnexion
                         </a>
                     {% endif %}
