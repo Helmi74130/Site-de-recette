@@ -54,9 +54,11 @@
                             Connexion
                         </a>
                     {% endif %}
-                    <a class="button is-light is-size-5" href="{{ path('admin') }}">
-                        Administration
-                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="button is-light is-size-5" href="{{ path('admin') }}">
+                            Administration
+                        </a>
+                    {% endif %}
                     {% if app.user %}
                         <a class="button is-warning is-size-5" href="{{ path('app_logout') }}">
                             Déconnexion

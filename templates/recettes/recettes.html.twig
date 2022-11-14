@@ -29,7 +29,7 @@
                                         <img src="{{ vich_uploader_asset(recette, 'imageFile') }}" alt="Placeholder image">
                                         {% for userAllergens in currentUserAllergensArray %}
                                             {%  if userAllergens in recette.allergens%}
-                                                <p class="piou has-background-warning has-text-centered mt-2"><b>Incompatible avec votre allergie</b></p>
+                                                <p class="piou has-background-warning-light has-text-centered mt-2"><b>Incompatible avec votre allergie</b></p>
                                             {% endif %}
                                         {% endfor %}
                                     </figure>
@@ -77,9 +77,20 @@
                         </a>
                     {% endfor %}
                 </div>
-                <div class="is-flex is-justify-content-center" >
-                    {{ knp_pagination_render(recettes) }}
-                </div>
+                {% if app.user %}
+                    <div class="is-flex is-justify-content-center " >
+                        {{ knp_pagination_render(recettes) }}
+                    </div>
+                {% else %}
+                    <div class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center is-size-3 mb-5" >
+                       <p>Connectez-vous pour avoir accès à toutes nos recettes</p>
+                        <div>
+                            <a class="button is-primary is-size-5 mt-3" href="{{ path('app_login') }}">
+                                Connexion
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     {% endif %}

@@ -33,6 +33,7 @@ class RecettesController extends AbstractController
             6
         );
 
+
         $user = $this->getUser();
         if (isset($user)){
             $currentUserAllergensString = str_replace(', ','.',$user->getAllergens());
@@ -89,16 +90,17 @@ class RecettesController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+        $username = $user?->getFullname();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $form->getData();
             $comment->setRecette($recette);
+            if($user){
+                $comment->setUser($username);
+            }
             $entityManager->persist($comment);
             $entityManager->flush();
-
-            $this->addFlash('success', 'Votre commentaire a été enregistré avec succès.');
-
-            return $this->redirectToRoute('app_home');
-
         };
 
 

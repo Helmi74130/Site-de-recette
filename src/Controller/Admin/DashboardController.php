@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Allergen;
+use App\Entity\Comment;
 use App\Entity\Contact;
 use App\Entity\Ingredient;
 use App\Entity\Meet;
@@ -49,6 +50,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Mes messages', 'fa-regular fa-message', Contact::class);
         yield MenuItem::section('Rendez-vous')->setCssClass('fs-5 font-weight-bold');
         yield MenuItem::linkToCrud('Mes rendez-vous', 'fa-regular fa-handshake', Meet::class);
+        yield MenuItem::section('Commentaires')->setCssClass('fs-5 font-weight-bold');
+        yield MenuItem::linkToCrud('Commentaires', 'fa-regular fa-message', Comment::class);
         yield MenuItem::section('Site Web')->setCssClass('fs-5 font-weight-bold');
         yield MenuItem::subMenu('Pages', 'fa-solid fa-laptop')->setSubItems([
             MenuItem::linkToRoute('Accueil', 'fa-solid fa-house-laptop', 'app_home'),

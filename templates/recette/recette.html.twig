@@ -93,15 +93,17 @@
                         {{ form_start(commentForm) }}
                         <article class="media">
                             <div class="media-content">
-                                <div class="column is-two-fifths">
-                                    {{ form_label(commentForm.user) }}
-                                    <div class="control has-icons-left mt-2">
-                                        {{ form_widget(commentForm.user, { 'attr': {'class': 'input is-primary'} }) }}
-                                        <span class="icon is-small is-left">
+                               {% if not app.user %}
+                                   <div class="column is-two-fifths">
+                                       {{ form_label(commentForm.user) }}
+                                       <div class="control has-icons-left mt-2">
+                                           {{ form_widget(commentForm.user, { 'attr': {'class': 'input is-primary'} }) }}
+                                           <span class="icon is-small is-left">
                                             <i class="bi bi-person-circle"></i>
                                         </span>
-                                    </div>
-                                </div>
+                                       </div>
+                                   </div>
+                                {% endif %}
                                 <div class="field">
                                     <p class="control">
                                         {{ form_widget(commentForm.message, { 'attr': {'class': 'textarea is-primary', 'placeholder': 'Ajouter un commentaire...'} }) }}
@@ -120,7 +122,7 @@
                     </div>
                     <hr>
                     <div class="is-flex is-flex-direction-column">
-                        {% for comment in recette.comments %}
+                        {% for comment in recette.comments|sort|reverse %}
                             <div class="content">
                                 <p>
                                     <strong>{{ comment.user }}</strong>
