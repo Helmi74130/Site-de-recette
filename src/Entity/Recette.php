@@ -58,14 +58,11 @@ class Recette
     #[ORM\Column(type: 'string')]
     private ?string $imageName = null;
 
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Comment::class)]
+    private Collection $comments;
+
 
     /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
     public function setImageFile(?File $imageFile = null): void
@@ -99,6 +96,7 @@ class Recette
         $this->ingredients = new ArrayCollection();
         $this->regimes = new ArrayCollection();
         $this->allergens = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -273,4 +271,42 @@ class Recette
 
         return $this;
     }
+
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getRecette() === $this) {
+                $comment->setRecette(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

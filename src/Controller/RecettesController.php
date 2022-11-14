@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Recette;
-use App\Entity\User;
+use App\Form\CommentType;
 use App\Repository\AllergenRepository;
 use App\Repository\RecetteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,8 +48,8 @@ class RecettesController extends AbstractController
         ]);
     }
 
-    #[Route('/recettes/{title}', name: 'app_recette', methods: ['GET'])]
-    public function displayRecipe(Recette $recette, RecetteRepository $recetteRepository): Response
+    #[Route('/recettes/{title}', name: 'app_recette', methods: ['GET', 'POST'])]
+    public function displayRecipe(Recette $recette, RecetteRepository $recetteRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         /**
          * This controller display one recette
@@ -77,10 +79,35 @@ class RecettesController extends AbstractController
 
         $randomRecettes = array_unique($randomRecettes, SORT_REGULAR);
 
+        /**
+         * Add new comment in database
+         * @param Request $request
+         * @param EntityManagerInterface $entityManager
+         */
+
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $form->getData();
+            $comment->setRecette($recette);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre commentaire a été enregistré avec succès.');
+
+            return $this->redirectToRoute('app_home');
+
+        };
+
+
+
         return $this->render('recette/recette.html.twig', [
             'recette'=> $recette,
             'randomRecettes'=>$randomRecettes,
-            'currentUserAllergensArray'=> $currentUserAllergensArray
+            'currentUserAllergensArray'=> $currentUserAllergensArray,
+            'commentForm' => $form->createView(),
         ]);
     }
 }

@@ -87,6 +87,52 @@
                             <p>{{ recette.etapes }}</p>
                         </div>
                     </div>
+                    <hr>
+                    <div class="is-flex is-flex-direction-column">
+                        <p class="subtitle">Ajouter un commentaire :</p>
+                        {{ form_start(commentForm) }}
+                        <article class="media">
+                            <div class="media-content">
+                                <div class="column is-two-fifths">
+                                    {{ form_label(commentForm.user) }}
+                                    <div class="control has-icons-left mt-2">
+                                        {{ form_widget(commentForm.user, { 'attr': {'class': 'input is-primary'} }) }}
+                                        <span class="icon is-small is-left">
+                                            <i class="bi bi-person-circle"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <p class="control">
+                                        {{ form_widget(commentForm.message, { 'attr': {'class': 'textarea is-primary', 'placeholder': 'Ajouter un commentaire...'} }) }}
+                                    </p>
+                                </div>
+                                <nav class="level">
+                                    <div class="level-left">
+                                        <div class="level-item">
+                                            <button type="submit" class="button is-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        </article>
+                        {{ form_end(commentForm) }}
+                    </div>
+                    <hr>
+                    <div class="is-flex is-flex-direction-column">
+                        {% for comment in recette.comments %}
+                            <div class="content">
+                                <p>
+                                    <strong>{{ comment.user }}</strong>
+                                    <br>
+                                    {{ comment.message }}
+                                    <br>
+                                    <small>Posté le {{ comment.createdAt|format_datetime('full', 'short', locale='fr') }}</small>
+                                </p>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="column ">
                     <p class="subtitle"><b>Vous aimerez aussi: </b></p>
@@ -98,7 +144,6 @@
                             </a>
                         {% endfor %}
                     </div>
-
                 </div>
             </div>
         </div>
