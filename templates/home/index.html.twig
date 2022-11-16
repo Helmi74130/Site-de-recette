@@ -30,6 +30,15 @@
     }
 </style>
 
+    {% for message in app.flashes('success') %}
+        <div class="container mb-6">
+            <div class="notification is-primary is-light">
+                <button class="delete"></button>
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
     <section class="hero is-primary mt-5">
         <div class="hero-body">
             <p class="title">
@@ -111,5 +120,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                const $notification = $delete.parentNode;
+
+                $delete.addEventListener('click', () => {
+                    $notification.parentNode.removeChild($notification);
+                });
+            });
+        });
+    </script>
 
 {% endblock %}

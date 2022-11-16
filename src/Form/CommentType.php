@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Comment;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,6 +35,11 @@ class CommentType extends AbstractType
                     'minlength' => '5',
                     'maxlength' => '5000'
                 ]
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'inscription',
+                'locale' => 'fr',
             ])
         ;
         if (!$user){
