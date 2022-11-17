@@ -13,6 +13,8 @@
     }
     .concombre-img{
         position: fixed;
+        left: 50%;
+        transform: translate(-50%);
         top: 0px;
         z-index: -1;
     }
@@ -28,6 +30,12 @@
     .test{
         background: rgba(0, 0, 0, 0.42);
     }
+    @media screen and (max-width: 1200px){
+        .concombre-img{
+            top: 300px;
+        }
+    }
+
 </style>
 
     {% for message in app.flashes('success') %}
@@ -49,15 +57,15 @@
             </p>
         </div>
     </section>
-    <div class="block white mb-0 p-6">
+    <div class="block white mb-0 ">
         <div class="container">
             <div class="columns">
                 <div class="column">
                     <img class="img-nutrition" src="{{ asset('img/fruits.jpg') }}">
                 </div>
                 <div class="column p-6 is-flex is-flex-direction-column is-justify-content-center has-text-centered">
-                    <h1 class="title">DIÉTÉTICIENNE À CAEN</h1>
-                    <p class="is-size-3">Diététicienne nutritionniste libérale, diplômée d’État, ayant plus de 15 ans d’expérience, je vous reçois en cabinet à Caen et de toute la France avec la visio-consultation par le biais de Doctolib, pour des échanges sécurisés.</p>
+                    <h1 class="title is-size-2-tablet is-size-4-mobile">DIÉTÉTICIENNE À CAEN</h1>
+                    <p class="is-size-3 is-size-4-tablet is-size-5-mobile">Diététicienne nutritionniste libérale, diplômée d’État, ayant plus de 15 ans d’expérience, je vous reçois en cabinet à Caen et de toute la France avec la visio-consultation par le biais de Doctolib, pour des échanges sécurisés.</p>
                 </div>
             </div>
         </div>
@@ -67,17 +75,17 @@
         <div class="container ">
             <div class="columns">
                 <div class="column is-size-3 is-flex is-flex-direction-column is-justify-content-center is-align-items-center has-text-justified">
-                    <h3 class="title">Une difficulté avec votre alimentation ?</h3>
-                    <p>
+                    <h3 class="title is-size-4-mobile">Une difficulté avec votre alimentation ?</h3>
+                    <p class="is-size-4-tablet is-size-5-mobile">
                         Je vous accompagne durablement dans votre projet, parce que votre santé reste l’essentiel de votre bien-être.
                         <br> Faite le choix de vous faire accompagner dans votre alimentation est un premier pas vers une sérénité alimentaire.
                     </p>
-                    <p class="is-size-5 mt-3">Ne tardez pas et prenez vite rendez-vous</p>
-                    <a href="{{ path('app_mycabine') }}" class="button is-primary is-large mt-3">Prenez RDV</a>
+                    <p class="is-size-5 mt-3 is-size-6-mobile">Ne tardez pas et prenez vite rendez-vous</p>
+                    <a href="{{ path('app_mycabine') }}" class="button is-primary is-large mt-3 is-size-5-mobile">Prenez RDV</a>
                 </div>
                 <div class="column is-flex is-justify-content-center is-align-items-center">
                     <div class="bulle is-flex is-justify-content-center is-align-items-center is-size-2">
-                        <p class="has-text-centered">10 ans <br> que je <br> vous <br> accompagne</p>
+                        <p class="has-text-centered is-size-3-mobile">10 ans <br> que je <br> vous <br> accompagne</p>
                     </div>
                 </div>
             </div>
@@ -109,8 +117,8 @@
     <div class="block box mb-0 p-5">
         <div class="container is-size-3 has-text-centered">
             <div>
-                <h4 class="title is-size-2 mt-5">Votre Diététicienne Nutritionniste spécialisée</h4>
-                <p class="mt-3 mb-5">
+                <h4 class="title is-size-2 mt-5 is-size-4-mobile">Votre Diététicienne Nutritionniste spécialisée</h4>
+                <p class="mt-3 mb-5 is-size-4-tablet is-size-5-mobile">
                     Les choix alimentaires et votre relation avec la nourriture sont à la base de votre santé physique et mentale.
                     Au-delà de votre image, votre corps est toujours vital pour votre santé, et s'efforcer d'en prendre soin au quotidien est inestimable.
                     Afin de prendre soin de votre alimentation et d'adapter vos apports alimentaires à vos besoins nutritionnels, vous devez d'abord soigner votre rapport à votre assiette.

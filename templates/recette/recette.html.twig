@@ -38,7 +38,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="column is-flex is-flex-direction-column " >
+                <div class="column is-flex is-flex-direction-column m-3" >
                     <h1 class="title">{{ recette.title | capitalize}}</h1>
                     <p>{{ recette.description }}</p>
                     {% for userAllergens in currentUserAllergensArray %}
@@ -136,7 +136,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="column ">
+                <div class="column m-2">
                     <p class="subtitle"><b>Vous aimerez aussi: </b></p>
                     <div class="is-flex is-flex-wrap-wrap is-justify-content-space-between">
                         {% for randomRecette in randomRecettes %}
