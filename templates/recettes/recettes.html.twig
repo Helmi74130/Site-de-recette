@@ -15,12 +15,9 @@
 
 <h1 class="title m-5">Nos recettes</h1>
     {% if not recettes.items is same as ([]) %}
-        <div class="">
-            <p class="">Il y'a {{ recettes.getTotalItemCount }} recette(s) au total</p>
-        </div>
         <div class="block">
             <div class="container">
-                <div class="columns is-multiline">
+                <div class="columns is-multiline mt-5">
                     {%  for recette in recettes %}
                         <a class="column is-one-third mt-5" href="{{ path('app_recette', {title: recette.title}) }}">
                             <div class="card">

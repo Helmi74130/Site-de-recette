@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
@@ -42,16 +42,6 @@
             {{ form_help(registrationForm.city, { 'attr': {'class': 'help'} } ) }}
         </div>
         <div class="column is-two-fifths">
-            {{ form_label(registrationForm.allergens) }}
-            <div class="control has-icons-left mt-2 ">
-                {{ form_widget(registrationForm.allergens, { 'attr': {'class': 'input is-primary is-large'} }) }}
-                <span class="icon is-small is-left">
-                    <i class="bi bi-list-task"></i>
-                </span>
-            </div>
-            {{ form_help(registrationForm.allergens, { 'attr': {'class': 'help'} } ) }}
-        </div>
-        <div class="column is-two-fifths">
             {{ form_label(registrationForm.email) }}
             <div class="control has-icons-left mt-2">
                 {{ form_widget(registrationForm.email, { 'attr': {'class': 'input is-primary is-large'} }) }}
@@ -62,21 +52,43 @@
             {{ form_help(registrationForm.email, { 'attr': {'class': 'help'} } ) }}
         </div>
         <div class="column is-two-fifths">
-            {{ form_label(registrationForm.plainPassword) }}
-            <div class="control has-icons-left mt-2">
-                {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'input is-primary is-large'} }) }}
+            {{ form_label(registrationForm.allergens) }}
+            <div class="control has-icons-left mt-2 ">
+                {{ form_widget(registrationForm.allergens, { 'attr': {'class': 'textarea is-primary is-large'} }) }}
                 <span class="icon is-small is-left">
-                    <i class="bi bi-lock"></i>
+                    <i class="bi bi-list-task"></i>
                 </span>
             </div>
-            {{ form_help(registrationForm.plainPassword, { 'attr': {'class': 'help'} } ) }}
+            {{ form_help(registrationForm.allergens, { 'attr': {'class': 'help'} } ) }}
+        </div>
+        <div class="column is-two-fifths is-flex is-flex-direction-column is-justify-content-space-between">
+            <div>
+                {{ form_label(registrationForm.plainPassword) }}
+                <div class="control has-icons-left mt-2">
+                    {{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'input is-primary is-large inputPassword1'} }) }}
+                    <span class="icon is-small is-left">
+                    <i class="bi bi-lock"></i>
+                </span>
+                </div>
+                <small class="has-text-danger inputHelp help"></small>
+            </div>
+            <div>
+                <label for="inputPassword">Confirmez votre mot de passe *</label>
+                <div class="control has-icons-left mt-2">
+                    <input id="inputPassword" type="password" class="input is-primary is-large">
+                    <span class="icon is-small is-left">
+                    <i class="bi bi-lock"></i>
+                </span>
+                </div>
+            </div>
+            <small class="has-text-danger inputHelp"></small>
         </div>
         <div class="column is-full is-flex is-justify-content-space-between">
             <div class="checkbox">
                 {{ form_row(registrationForm.agreeTerms, { 'attr': {'type': 'checkbox', 'class': 'ml-2' } }) }}
             </div>
             <div>
-                <button type="submit" class="button is-primary">
+                <button id="buttonSubmit" type="submit" class="button is-primary">
                     <span class="icon">
                         <i class="bi bi-send"></i>
                      </span>
@@ -86,5 +98,24 @@
         </div>
         {{ form_end(registrationForm) }}
     </div>
+
+    <script>
+        let inputPassword1 = document.querySelector('.inputPassword1')
+        let inputPassword = document.querySelector('#inputPassword')
+        let inputHelp = document.querySelectorAll('.inputHelp')
+        let buttonSubmit = document.querySelector('#buttonSubmit')
+
+        buttonSubmit.addEventListener('click', (e)=>{
+            if (inputPassword1.value !== inputPassword.value){
+                e.preventDefault()
+                inputHelp[0].textContent = 'Votre mot de passe ne correspond pas'
+                inputHelp[1].textContent = 'Votre mot de passe ne correspond pas'
+            }else {
+                inputHelp[0].textContent = ''
+                inputHelp[1].textContent = ''
+            }
+        } )
+
+    </script>
 
 {% endblock %}
