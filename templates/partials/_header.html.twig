@@ -1,17 +1,17 @@
-<nav class="navbar is-size-5" role="navigation" aria-label="main navigation">
+<nav class="navbar is-size-5 is-light" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ path('app_home') }}">
             <img src="{{ asset('img/logo.png') }}" width="42" height="42">
         </a>
 
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a id="buttonBurger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasic" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" href="{{ path('app_home') }}">
                 Accueil
@@ -39,7 +39,6 @@
 
         <div class="navbar-end">
             <div class="navbar-item">
-
                 <div class="buttons">
                     {% if app.user %}
                         {% if user.name is defined and user.name is not null %}
@@ -69,3 +68,13 @@
         </div>
     </div>
 </nav>
+
+<script>
+    let navbarBasic = document.querySelector('#navbarBasic')
+    let buttonBurger = document.querySelector('#buttonBurger')
+
+    buttonBurger.addEventListener('click', ()=>{
+        navbarBasic.classList.toggle("is-active");
+
+    })
+</script>
